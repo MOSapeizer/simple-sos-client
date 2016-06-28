@@ -1,0 +1,23 @@
+div.pos_fixed {
+    position: absolute;
+    top: 9%;
+    left: 10%;
+}
+
+div.pos_fixed2 {
+    position: absolute;
+    top: 9%;
+    right: 30%;
+}
+
+div.pos_fixed3 {
+    position: absolute;
+    top: 60%;
+    left: 20%;
+}
+
+div.pos_fixed4 {
+    position: absolute;
+    top: 65%;
+    left: 5%;
+}

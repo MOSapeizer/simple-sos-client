@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>SOS</title>
+        <meta charset="UTF-8" />
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="css/main.css" rel="stylesheet" type="text/css">
+        <!-- TGOS map 要去官網申請 key 才能使用 -->
+    	<script type="text/javascript" src="http://api.tgos.nat.gov.tw/TGOS_API/tgos?ver=2&AppID={There for AppID}&APIKey={There for APIKey}" charset="utf-8"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+        <script type="text/javascript" src="http://code.highcharts.com/modules/exporting.js"></script>
+        <script type="text/javascript" src="js/xml-template.js"></script>
+        <script type="text/javascript" src="js/sos-client-helper.js"></script>
+        <script type="text/javascript" src="js/sos-client.js"></script>
+    </head>
+
+    <body onload="create_map()">
+        <h1 class="text-center"><strong><font face="微軟正黑體">國土資訊系統資料標準制度服務案</font></strong></h1>
+        <div class="container">
+            <div class="col-sm-4" id="TGMap" style="width: 50%; height: 500px"></div>
+            <div class="col-sm-4">
+                <form class="form-horizontal">
+    				<div class="control-group">
+                        <label class="control-label">SOS服務網址:</label>
+                        <div class="controls">
+                            <select onChange="get_capability(this.options[this.selectedIndex].value)" class="form-control" id="sosURL">
+    							<option>請選擇</option>
+                                <option value="http://cgis.csrsr.ncu.edu.tw:8080/swcb-sos-new/service">http://cgis.csrsr.ncu.edu.tw:8080/swcb-sos-new/service</option>
+    							<option value="http://cgis.csrsr.ncu.edu.tw:8080/epa-sos/service">http://cgis.csrsr.ncu.edu.tw:8080/epa-sos/service</option>
+    							<option value="http://cgis.csrsr.ncu.edu.tw:8080/epa-aqx-sos/service">http://cgis.csrsr.ncu.edu.tw:8080/epa-aqx-sos/service</option>
+                                <!-- <option value="http://localhost:8080/swcb-sos/service">http://localhost:8080/swcb-sos/service</option> -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">測站名稱:</label>
+                        <div class="controls">
+                            <select onChange="update_time(this.options[this.selectedIndex].value)" class="form-control" id="offeringID">
+    							<option>請選擇</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="inputPassword">觀測現象:</label>
+                        <div class="controls">
+                            <select class="form-control" id="property">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="inputPassword">起始時間:</label>
+                        <div class="controls">
+                            <input size="50" type="text" id="startTime" value="">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="inputPassword">結束時間:</label>
+                        <div class="controls">
+                            <input size="50" type="text" id="endTime" value="">
+                        </div>
+                    </div>
+                </form>
+                <br />
+                <button class="btn btn-large btn-primary" type="button" onClick="get_observation()">取得觀測資料</button>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-xs-2" id="container" style="width: 60%; height: 60%"></div>
+            <div class="col-xs-2" id="resultTable" style="width: 30%"></div>
+        </div>
+    	<div class="row">
+    		<div class="col-xs-2" id="describesensor"></div>
+    	</div>
+    </body>
+
+</html>
